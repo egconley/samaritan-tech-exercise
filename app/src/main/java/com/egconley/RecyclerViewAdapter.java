@@ -76,7 +76,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            pokemonPic = itemView.findViewById(R.id.imageview);
+            pokemonPic = itemView.findViewById(R.id.main_imageview);
             pokemonName = itemView.findViewById(R.id.name_textview);
             level = itemView.findViewById(R.id.level_textview);
             pokemonTypes = itemView.findViewById(R.id.types_textview);
