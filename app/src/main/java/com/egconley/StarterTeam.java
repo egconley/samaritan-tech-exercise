@@ -1,12 +1,15 @@
 package com.egconley;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 // REQ 1: Hard code a list of 7 pokemon those will be your starter pokemon team.
 public class StarterTeam {
 
-    public static Pokemon[] generateStarterTeam() {
+    public static List<Pokemon> generateStarterTeam() {
+
+        List<Pokemon> starterTeam = new ArrayList<>();
 
         Pokemon growlithe;
         Pokemon charmander;
@@ -44,7 +47,6 @@ public class StarterTeam {
         List<String> cyndaquilMoves;
         List<String> cyndaquilAbilities;
 
-        growlithe = new Pokemon("Growlithe", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/58.png", 58, 190, 7);
         growlitheTypes = new LinkedList<>();
         growlitheTypes.add("fire");
         growlitheMoves = new LinkedList<>();
@@ -55,8 +57,8 @@ public class StarterTeam {
         growlitheAbilities.add("intimidate");
         growlitheAbilities.add("flash-fire");
         growlitheAbilities.add("justified");
+        growlithe = new Pokemon("Growlithe", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/58.png", 58, 190, 7, growlitheTypes, growlitheMoves, growlitheAbilities);
 
-        charmander = new Pokemon("Charmander", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png", 4, 85, 6);
         charmanderTypes = new LinkedList<>();
         charmanderTypes.add("fire");
         charmanderMoves = new LinkedList<>();
@@ -66,8 +68,8 @@ public class StarterTeam {
         charmanderAbilities = new LinkedList<>();
         charmanderAbilities.add("blaze");
         charmanderAbilities.add("solar-power");
+        charmander = new Pokemon("Charmander", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png", 4, 85, 6, charmanderTypes, charmanderMoves, charmanderAbilities);
 
-        dratini = new Pokemon("Dratini", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/147.png", 147, 33, 18);
         dratiniTypes = new LinkedList<>();
         dratiniTypes.add("dragon");
         dratiniMoves = new LinkedList<>();
@@ -77,8 +79,8 @@ public class StarterTeam {
         dratiniAbilities = new LinkedList<>();
         dratiniAbilities.add("shed-skin");
         dratiniAbilities.add("marvel-scale");
+        dratini = new Pokemon("Dratini", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/147.png", 147, 33, 18, dratiniTypes, dratiniMoves, dratiniAbilities);
 
-        bulbasaur = new Pokemon("Bulbasaur", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png", 1, 69, 7);
         bulbasaurTypes = new LinkedList<>();
         bulbasaurTypes.add("grass");
         bulbasaurTypes.add("poison");
@@ -89,8 +91,8 @@ public class StarterTeam {
         bulbasaurAbilities = new LinkedList<>();
         bulbasaurAbilities.add("overgrow");
         bulbasaurAbilities.add("chlorophyll");
+        bulbasaur = new Pokemon("Bulbasaur", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png", 1, 69, 7, bulbasaurTypes, bulbasaurMoves, bulbasaurAbilities);
 
-        psyduck = new Pokemon("Psyduck", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/54.png", 54, 196, 8);
         psyduckTypes = new LinkedList<>();
         psyduckTypes.add("water");
         psyduckMoves = new LinkedList<>();
@@ -101,8 +103,8 @@ public class StarterTeam {
         psyduckAbilities.add("damp");
         psyduckAbilities.add("cloud-nine");
         psyduckAbilities.add("swift-swim");
+        psyduck = new Pokemon("Psyduck", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/54.png", 54, 196, 8, psyduckTypes, psyduckMoves, psyduckAbilities);
 
-        magikarp = new Pokemon("Magikarp", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/129.png", 129, 100, 9);
         magikarpTypes = new LinkedList<>();
         magikarpTypes.add("water");
         magikarpMoves = new LinkedList<>();
@@ -112,8 +114,8 @@ public class StarterTeam {
         magikarpAbilities = new LinkedList<>();
         magikarpAbilities.add("swift-swim");
         magikarpAbilities.add("rattled");
+        magikarp = new Pokemon("Magikarp", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/129.png", 129, 100, 9, magikarpTypes, magikarpMoves, magikarpAbilities);
 
-        cyndaquil = new Pokemon("Cyndaquil", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/155.png", 155, 79, 5);
         cyndaquilTypes = new LinkedList<>();
         cyndaquilTypes.add("fire");
         cyndaquilMoves = new LinkedList<>();
@@ -123,7 +125,16 @@ public class StarterTeam {
         cyndaquilAbilities = new LinkedList<>();
         cyndaquilAbilities.add("blaze");
         cyndaquilAbilities.add("flash-fire");
+        cyndaquil = new Pokemon("Cyndaquil", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/155.png", 155, 79, 5, cyndaquilTypes, charmanderMoves, cyndaquilAbilities);
 
-        return new Pokemon[]{growlithe, charmander, dratini, bulbasaur, psyduck, magikarp, cyndaquil};
+        starterTeam.add(growlithe);
+        starterTeam.add(charmander);
+        starterTeam.add(dratini);
+        starterTeam.add(bulbasaur);
+        starterTeam.add(psyduck);
+        starterTeam.add(magikarp);
+        starterTeam.add(cyndaquil);
+
+        return starterTeam;
     }
 }
