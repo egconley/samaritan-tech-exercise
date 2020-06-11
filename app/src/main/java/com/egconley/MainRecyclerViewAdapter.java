@@ -1,6 +1,7 @@
 package com.egconley;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,15 +20,15 @@ import java.util.List;
 
 // REQ 2: Render the list of 7 pokemon in a RecyclerView and use ConstraintLayout to display the ui of each pokemon.
 // Resource used: https://www.youtube.com/watch?v=Vyqz_-sJGFk
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>{
 
-    private static final String TAG = "egc.RecyclerViewAdapter";
+    private static final String TAG = "egc.MainRVAdapter";
 
     private Context mContext;
     private List<Pokemon> mPokemon = new ArrayList();
 
     // default constructor
-    public RecyclerViewAdapter(Context mContext, List<Pokemon> mPokemon) {
+    public MainRecyclerViewAdapter(Context mContext, List<Pokemon> mPokemon) {
         this.mPokemon = mPokemon;
         this.mContext = mContext;
     }
@@ -35,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_pokemonlist, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -57,6 +58,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Clicked on: " + mPokemon.get(position).name);
+                Intent goToDetailView = new Intent(mContext, DetailViewActivity.class);
+
+                goToDetailView.putExtra("kName", mPokemon.get(position).name);
+                goToDetailView.putExtra("kFrontPic", mPokemon.get(position).getImgUrl1());
+                goToDetailView.putExtra("kBackPic", mPokemon.get(position).getImgUrl2());
+                goToDetailView.putExtra("kWeight", ""+mPokemon.get(position).getWeight());
+                goToDetailView.putExtra("kTypes", mPokemon.get(position).getTypes());
+                goToDetailView.putExtra("kNumber", ""+mPokemon.get(position).getSpeciesNumber());
+                goToDetailView.putExtra("kHeight", ""+mPokemon.get(position).getHeight());
+
+
+                goToDetailView.putStringArrayListExtra("moves", mPokemon.get(position).getMoves());
+                goToDetailView.putStringArrayListExtra("abilities", mPokemon.get(position).getAbilities());
+
+                mContext.startActivity(goToDetailView);
             }
         });
     }
@@ -80,7 +96,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             pokemonName = itemView.findViewById(R.id.name_textview);
             level = itemView.findViewById(R.id.level_textview);
             pokemonTypes = itemView.findViewById(R.id.types_textview);
-            listItemLayout = itemView.findViewById(R.id.list_item_layout);
+            listItemLayout = itemView.findViewById(R.id.pokemonlist_layout);
         }
     }
 }
