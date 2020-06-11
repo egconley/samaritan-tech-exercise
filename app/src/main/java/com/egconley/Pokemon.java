@@ -90,7 +90,7 @@ public class Pokemon {
         } else {
             StringBuilder builder = new StringBuilder();
             builder.append(types.get(0));
-            ListIterator listIterator = types.listIterator(0);
+            ListIterator listIterator = types.listIterator(1);
             while (listIterator.hasNext()) {
                 builder.append(", " + listIterator.next());
             }
