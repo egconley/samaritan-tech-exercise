@@ -20,40 +20,40 @@ public class StarterTeam {
         Pokemon cyndaquil;
 
         List<String> growlitheTypes;
-        List<String> growlitheMoves;
-        List<String> growlitheAbilities;
+        ArrayList<String> growlitheMoves;
+        ArrayList<String> growlitheAbilities;
 
         List<String> charmanderTypes;
-        List<String> charmanderMoves;
-        List<String> charmanderAbilities;
+        ArrayList<String> charmanderMoves;
+        ArrayList<String> charmanderAbilities;
 
         List<String> dratiniTypes;
-        List<String> dratiniMoves;
-        List<String> dratiniAbilities;
+        ArrayList<String> dratiniMoves;
+        ArrayList<String> dratiniAbilities;
 
         List<String> bulbasaurTypes;
-        List<String> bulbasaurMoves;
-        List<String> bulbasaurAbilities;
+        ArrayList<String> bulbasaurMoves;
+        ArrayList<String> bulbasaurAbilities;
 
         List<String> psyduckTypes;
-        List<String> psyduckMoves;
-        List<String> psyduckAbilities;
+        ArrayList<String> psyduckMoves;
+        ArrayList<String> psyduckAbilities;
 
         List<String> magikarpTypes;
-        List<String> magikarpMoves;
-        List<String> magikarpAbilities;
+        ArrayList<String> magikarpMoves;
+        ArrayList<String> magikarpAbilities;
 
         List<String> cyndaquilTypes;
-        List<String> cyndaquilMoves;
-        List<String> cyndaquilAbilities;
+        ArrayList<String> cyndaquilMoves;
+        ArrayList<String> cyndaquilAbilities;
 
         growlitheTypes = new LinkedList<>();
         growlitheTypes.add("fire");
-        growlitheMoves = new LinkedList<>();
+        growlitheMoves = new ArrayList<>();
         growlitheMoves.add("double-kick");
         growlitheMoves.add("headbutt");
         growlitheMoves.add("body-slam");
-        growlitheAbilities = new LinkedList<>();
+        growlitheAbilities = new ArrayList<>();
         growlitheAbilities.add("intimidate");
         growlitheAbilities.add("flash-fire");
         growlitheAbilities.add("justified");
@@ -61,22 +61,22 @@ public class StarterTeam {
 
         charmanderTypes = new LinkedList<>();
         charmanderTypes.add("fire");
-        charmanderMoves = new LinkedList<>();
+        charmanderMoves = new ArrayList<>();
         charmanderMoves.add("mega-punch");
         charmanderMoves.add("fire-punch");
         charmanderMoves.add("thunder-punch");
-        charmanderAbilities = new LinkedList<>();
+        charmanderAbilities = new ArrayList<>();
         charmanderAbilities.add("blaze");
         charmanderAbilities.add("solar-power");
         charmander = new Pokemon("Charmander", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png", 4, 85, 6, charmanderTypes, charmanderMoves, charmanderAbilities);
 
         dratiniTypes = new LinkedList<>();
         dratiniTypes.add("dragon");
-        dratiniMoves = new LinkedList<>();
+        dratiniMoves = new ArrayList<>();
         dratiniMoves.add("bind");
         dratiniMoves.add("slam");
         dratiniMoves.add("headbutt");
-        dratiniAbilities = new LinkedList<>();
+        dratiniAbilities = new ArrayList<>();
         dratiniAbilities.add("shed-skin");
         dratiniAbilities.add("marvel-scale");
         dratini = new Pokemon("Dratini", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/147.png", 147, 33, 18, dratiniTypes, dratiniMoves, dratiniAbilities);
@@ -84,22 +84,22 @@ public class StarterTeam {
         bulbasaurTypes = new LinkedList<>();
         bulbasaurTypes.add("grass");
         bulbasaurTypes.add("poison");
-        bulbasaurMoves = new LinkedList<>();
+        bulbasaurMoves = new ArrayList<>();
         bulbasaurMoves.add("razor-wind");
         bulbasaurMoves.add("swords-dance");
         bulbasaurMoves.add("bind");
-        bulbasaurAbilities = new LinkedList<>();
+        bulbasaurAbilities = new ArrayList<>();
         bulbasaurAbilities.add("overgrow");
         bulbasaurAbilities.add("chlorophyll");
         bulbasaur = new Pokemon("Bulbasaur", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png", 1, 69, 7, bulbasaurTypes, bulbasaurMoves, bulbasaurAbilities);
 
         psyduckTypes = new LinkedList<>();
         psyduckTypes.add("water");
-        psyduckMoves = new LinkedList<>();
+        psyduckMoves = new ArrayList<>();
         psyduckMoves.add("mega-punch");
         psyduckMoves.add("pay-day");
         psyduckMoves.add("ice-punch");
-        psyduckAbilities = new LinkedList<>();
+        psyduckAbilities = new ArrayList<>();
         psyduckAbilities.add("damp");
         psyduckAbilities.add("cloud-nine");
         psyduckAbilities.add("swift-swim");
@@ -107,22 +107,22 @@ public class StarterTeam {
 
         magikarpTypes = new LinkedList<>();
         magikarpTypes.add("water");
-        magikarpMoves = new LinkedList<>();
+        magikarpMoves = new ArrayList<>();
         magikarpMoves.add("tackle");
         magikarpMoves.add("splash");
         magikarpMoves.add("flail");
-        magikarpAbilities = new LinkedList<>();
+        magikarpAbilities = new ArrayList<>();
         magikarpAbilities.add("swift-swim");
         magikarpAbilities.add("rattled");
         magikarp = new Pokemon("Magikarp", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/129.png", 129, 100, 9, magikarpTypes, magikarpMoves, magikarpAbilities);
 
         cyndaquilTypes = new LinkedList<>();
         cyndaquilTypes.add("fire");
-        cyndaquilMoves = new LinkedList<>();
+        cyndaquilMoves = new ArrayList<>();
         cyndaquilMoves.add("cut");
         cyndaquilMoves.add("double-kick");
         cyndaquilMoves.add("headbutt");
-        cyndaquilAbilities = new LinkedList<>();
+        cyndaquilAbilities = new ArrayList<>();
         cyndaquilAbilities.add("blaze");
         cyndaquilAbilities.add("flash-fire");
         cyndaquil = new Pokemon("Cyndaquil", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/155.png", 155, 79, 5, cyndaquilTypes, charmanderMoves, cyndaquilAbilities);

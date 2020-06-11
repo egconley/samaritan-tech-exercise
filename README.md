@@ -9,7 +9,7 @@ Create an app that simulates a mini pokedex using [The open Pokemon API](https:/
 - [X] 1. Hard code a list of 7 pokemon those will be your starter pokemon team, feel free to use any pokemon.
 - [X] 2. Render the list of 7 pokemon in a `RecyclerView` and use `ConstraintLayout` to display the ui of each pokemon.
 - [ ] 3. **Bonus Feature:** Implement a filter search bar on top of the pokemon list to filter your pokemon team by name
-- [ ] 4. When a pokemon is clicked it should show the detail view of the selected pokemon.
+- [X] 4. When a pokemon is clicked it should show the detail view of the selected pokemon.
    * Use `ConstraintLayout` to render the detail data of that pokemon
    * **Bonus Feature:** Use `CoordinatorLayout` and `CollapseAppBarLayout` to create a parallax effect when scrolling
 - [ ] 5. Connect Pokedex Client App to [The open Pokemon API](https://pokeapi.co/) using Retro fit

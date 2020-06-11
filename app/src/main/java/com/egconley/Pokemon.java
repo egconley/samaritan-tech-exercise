@@ -1,5 +1,6 @@
 package com.egconley;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -14,8 +15,8 @@ public class Pokemon {
     private int weight;
     private int height;
     private List<String> types;
-    private List<String> moves;
-    private List<String> abilities;
+    private ArrayList<String> moves;
+    private ArrayList<String> abilities;
 
     // default constructor
     public Pokemon() {
@@ -23,7 +24,7 @@ public class Pokemon {
     }
 
     // constructor
-    public Pokemon(String name, String imgUrl1, String imgUrl2, int speciesNumber, int weight, int height, List<String> types, List<String> moves, List<String> abilities) {
+    public Pokemon(String name, String imgUrl1, String imgUrl2, int speciesNumber, int weight, int height, List<String> types, ArrayList<String> moves, ArrayList<String> abilities) {
         this.name = name;
         this.imgUrl1 = imgUrl1;
         this.imgUrl2 = imgUrl2;
@@ -102,19 +103,19 @@ public class Pokemon {
         this.types = types;
     }
 
-    public List<String> getMoves() {
+    public ArrayList<String> getMoves() {
         return moves;
     }
 
-    public void setMoves(List<String> moves) {
+    public void setMoves(ArrayList<String> moves) {
         this.moves = moves;
     }
 
-    public List<String> getAbilities() {
+    public ArrayList<String> getAbilities() {
         return abilities;
     }
 
-    public void setAbilities(List<String> abilities) {
+    public void setAbilities(ArrayList<String> abilities) {
         this.abilities = abilities;
     }
 }
