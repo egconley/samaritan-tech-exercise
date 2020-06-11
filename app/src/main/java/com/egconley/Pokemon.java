@@ -1,8 +1,11 @@
 package com.egconley;
 
 import java.util.List;
+import java.util.ListIterator;
 
 public class Pokemon {
+
+    private static final String TAG = "egc.Pokemon";
 
     String name;
     private String imgUrl1;
@@ -17,19 +20,6 @@ public class Pokemon {
     // default constructor
     public Pokemon() {
 
-    }
-
-    public Pokemon(String name) {
-        this.name = name;
-    }
-
-    public Pokemon(String name, String imgUrl1, String imgUrl2, int speciesNumber, int weight, int height) {
-        this.name = name;
-        this.imgUrl1 = imgUrl1;
-        this.imgUrl2 = imgUrl2;
-        this.speciesNumber = speciesNumber;
-        this.weight = weight;
-        this.height = height;
     }
 
     // constructor
@@ -94,8 +84,18 @@ public class Pokemon {
         this.height = height;
     }
 
-    public List<String> getTypes() {
-        return types;
+    public String getTypes() {
+        if (types.size()==1) {
+            return types.get(0);
+        } else {
+            StringBuilder builder = new StringBuilder();
+            builder.append(types.get(0));
+            ListIterator listIterator = types.listIterator(0);
+            while (listIterator.hasNext()) {
+                builder.append(", " + listIterator.next());
+            }
+            return builder.toString();
+        }
     }
 
     public void setTypes(List<String> types) {
