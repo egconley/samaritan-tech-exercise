@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "initRecyclerView");
         starterTeam = StarterTeam.generateStarterTeam();
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, starterTeam);
+        MainRecyclerViewAdapter adapter = new MainRecyclerViewAdapter(this, starterTeam);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

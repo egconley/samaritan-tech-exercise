@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailViewActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_image_name_container"
+        android:layout_width="409dp"
+        android:layout_height="290dp"
+        android:background="@color/colorDarkBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_imageView"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/front_imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <ImageView
+            android:id="@+id/front_imageView"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/back_imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/detail_name_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="detail_bigName_textView"
+            tools:layout_editor_absoluteY="602dp" />
+
+        <TextView
+            android:id="@+id/detail_bigName_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="6dp"
+            android:text="Name"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_info_container"
+        android:layout_width="409dp"
+        android:layout_height="311dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_image_name_container">
+
+        <TextView
+            android:id="@+id/detail_name_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/detail_weight_textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_weight_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Weight"
+            app:layout_constraintBottom_toTopOf="@+id/detail_types_textView"
+            app:layout_constraintStart_toStartOf="@+id/detail_name_textView"
+            app:layout_constraintTop_toBottomOf="@+id/detail_name_textView" />
+
+        <TextView
+            android:id="@+id/detail_types_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Types"
+            app:layout_constraintBottom_toTopOf="@+id/detail_moves_textView"
+            app:layout_constraintStart_toStartOf="@+id/detail_weight_textView"
+            app:layout_constraintTop_toBottomOf="@+id/detail_weight_textView" />
+
+        <TextView
+            android:id="@+id/detail_height_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Height"
+            app:layout_constraintStart_toStartOf="@+id/detail_number_textView"
+            app:layout_constraintTop_toBottomOf="@+id/detail_number_textView" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/detail_stats_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left" />
+
+        <TextView
+            android:id="@+id/detail_moves_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Moves:"
+            app:layout_constraintBottom_toTopOf="@+id/detail_moves_recyclerView"
+            app:layout_constraintStart_toStartOf="@+id/detail_types_textView"
+            app:layout_constraintTop_toBottomOf="@+id/detail_types_textView" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/detail_number_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Pokemon Number"
+            app:layout_constraintStart_toStartOf="@+id/center_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_abilities_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Abilities:"
+            app:layout_constraintBottom_toTopOf="@+id/detail_abilities_recyclerView"
+            app:layout_constraintStart_toStartOf="@+id/detail_moves_recyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/detail_moves_recyclerView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detail_moves_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/detail_abilities_textView"
+            app:layout_constraintStart_toStartOf="@+id/detail_moves_textView"
+            app:layout_constraintTop_toBottomOf="@+id/detail_moves_textView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detail_abilities_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/detail_abilities_textView"
+            app:layout_constraintTop_toBottomOf="@+id/detail_abilities_textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
