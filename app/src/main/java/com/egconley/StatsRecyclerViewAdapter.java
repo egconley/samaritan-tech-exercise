@@ -24,7 +24,6 @@ public class StatsRecyclerViewAdapter extends RecyclerView.Adapter<StatsRecycler
     int listLayoutID;
     int itemViewID;
 
-    // default constructor
     public StatsRecyclerViewAdapter(Context mContext, List<String> mItems, int parentLayoutID, int listLayoutID, int itemViewID) {
         this.mItems = mItems;
         this.mContext = mContext;

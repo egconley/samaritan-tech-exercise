@@ -14,9 +14,19 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.egconley.pokemonAPI.models.Ability;
+import com.egconley.pokemonAPI.models.Move;
+import com.egconley.pokemonAPI.models.Sprites;
+import com.egconley.pokemonAPI.models.Type;
+import com.egconley.pokemonAPI.models.Pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.egconley.util.StringArrayGenerator.getAbilitiesStringArray;
+import static com.egconley.util.StringArrayGenerator.getMovesStringArray;
+import static com.egconley.util.StringArrayGenerator.getTypesString;
+import static com.egconley.util.StringArrayGenerator.getTypesStringArray;
 
 // REQ 2: Render the list of 7 pokemon in a RecyclerView and use ConstraintLayout to display the ui of each pokemon.
 // Resource used: https://www.youtube.com/watch?v=Vyqz_-sJGFk
@@ -45,32 +55,47 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder called.");
 
+        // get data in String/ArrayList<String> form
+        ArrayList<Ability> abilities = mPokemon.get(position).getAbilities();
+        final ArrayList<String> abilitiesStringArray = getAbilitiesStringArray(abilities);
+
+        ArrayList<Move> moves = mPokemon.get(position).getMoves();
+        final ArrayList<String> movesStringArray = getMovesStringArray(moves);
+
+        ArrayList<Type> types = mPokemon.get(position).getTypes();
+        ArrayList<String> typesStringArray = getTypesStringArray(types);
+        final String typesString = getTypesString(typesStringArray);
+
+        Sprites sprites = mPokemon.get(position).getSprites();
+        final String frontPic = sprites.getFront_default();
+        final String backPic = sprites.getBack_default();
+
+        // populate data for recycler view in main activity
         Glide.with(mContext)
-                .load(mPokemon.get(position).getImgUrl1())
+                .load(frontPic)
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(holder.pokemonPic);
-        holder.pokemonName.setText("Name: " + mPokemon.get(position).name);
+        holder.pokemonName.setText("Name: " + mPokemon.get(position).getName());
         holder.level.setText("Level: 34");
-        holder.pokemonTypes.setText("Types: " + mPokemon.get(position).getTypes());
+        holder.pokemonTypes.setText("Types: " + typesString);
 
+        // set onclick listener to start detail view and send data for clicked pokemon
         holder.listItemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Clicked on: " + mPokemon.get(position).name);
+                Log.d(TAG, "Clicked on: " + mPokemon.get(position).getName());
                 Intent goToDetailView = new Intent(mContext, DetailViewActivity.class);
 
-                goToDetailView.putExtra("kName", mPokemon.get(position).name);
-                goToDetailView.putExtra("kFrontPic", mPokemon.get(position).getImgUrl1());
-                goToDetailView.putExtra("kBackPic", mPokemon.get(position).getImgUrl2());
+                goToDetailView.putExtra("kName", mPokemon.get(position).getName());
+                goToDetailView.putExtra("kFrontPic", frontPic);
+                goToDetailView.putExtra("kBackPic", backPic);
                 goToDetailView.putExtra("kWeight", ""+mPokemon.get(position).getWeight());
-                goToDetailView.putExtra("kTypes", mPokemon.get(position).getTypes());
-                goToDetailView.putExtra("kNumber", ""+mPokemon.get(position).getSpeciesNumber());
+                goToDetailView.putExtra("kTypes", typesString);
+                goToDetailView.putExtra("kNumber", ""+mPokemon.get(position).getId());
                 goToDetailView.putExtra("kHeight", ""+mPokemon.get(position).getHeight());
-
-
-                goToDetailView.putStringArrayListExtra("moves", mPokemon.get(position).getMoves());
-                goToDetailView.putStringArrayListExtra("abilities", mPokemon.get(position).getAbilities());
+                goToDetailView.putStringArrayListExtra("moves", movesStringArray);
+                goToDetailView.putStringArrayListExtra("abilities", abilitiesStringArray);
 
                 mContext.startActivity(goToDetailView);
             }
