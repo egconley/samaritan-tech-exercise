@@ -124,4 +124,9 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             listItemLayout = itemView.findViewById(R.id.pokemonlist_layout);
         }
     }
+
+    public void filteredList(ArrayList<Pokemon> filteredList) {
+        mPokemon = filteredList;
+        notifyDataSetChanged();
+    }
 }

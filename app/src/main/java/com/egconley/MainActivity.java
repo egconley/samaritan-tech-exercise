@@ -5,10 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.egconley.pokemonAPI.PokemonAPIService;
 import com.egconley.pokemonAPI.models.Pokemon;
+import com.egconley.pokemonAPI.models.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.egconley.util.RandomNumberSetGenerator.getRandomNumberSet;
+import static com.egconley.util.StringArrayGenerator.getTypesString;
+import static com.egconley.util.StringArrayGenerator.getTypesStringArray;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Pokemon> apiStarterTeam = new ArrayList<>();
 
+    private MainRecyclerViewAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +50,49 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "On Create started.");
 
         getStarterTeam();
+
+        // Resource used: https://www.youtube.com/watch?v=OWwOSLfWboY
+        EditText searchBar = findViewById(R.id.searchBar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+    }
+
+    private void filter(String text) {
+        ArrayList<Pokemon> filteredList = new ArrayList();
+
+        for (Pokemon p : apiStarterTeam) {
+            ArrayList<Type> types = p.getTypes();
+            ArrayList<String> typesStringArray = getTypesStringArray(types);
+            String typesString = getTypesString(typesStringArray);
+
+            boolean nameContainsSearchedText = p.getName().toLowerCase().contains(text.toLowerCase());
+            boolean typesContainsSearchedText = typesString.toLowerCase().contains(text.toLowerCase());
+
+            if (nameContainsSearchedText || typesContainsSearchedText) {
+                filteredList.add(p);
+            }
+        }
+
+        adapter.filteredList(filteredList);
     }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        MainRecyclerViewAdapter adapter = new MainRecyclerViewAdapter(this, apiStarterTeam);
+        adapter = new MainRecyclerViewAdapter(this, apiStarterTeam);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -83,4 +129,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
