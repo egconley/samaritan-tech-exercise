@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
+
             app:constraint_referenced_ids="detail_bigName_textView"
             tools:layout_editor_absoluteY="602dp" />
 
@@ -155,8 +156,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/detail_moves_recyclerView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="195dp"
+            android:layout_height="57dp"
             android:layout_marginTop="6dp"
             app:layout_constraintBottom_toTopOf="@+id/detail_abilities_textView"
             app:layout_constraintStart_toStartOf="@+id/detail_moves_textView"
@@ -164,8 +165,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/detail_abilities_recyclerView"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="193dp"
+            android:layout_height="59dp"
             android:layout_marginTop="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/detail_abilities_textView"
