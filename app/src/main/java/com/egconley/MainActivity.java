@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private PokemonAPIService pokemonAPIService = retrofit.create(PokemonAPIService.class);
 
     private List<Pokemon> apiStarterTeam = new ArrayList<>();
-
+  
     private MainRecyclerViewAdapter adapter;
 
     @Override
@@ -86,6 +86,24 @@ public class MainActivity extends AppCompatActivity {
                 filteredList.add(p);
             }
         }
+    }
+
+    // REQ 5.2 Fetch the pokemon using those pokemon_numbers to call the endpoint https://pokeapi.co/api/v2/pokemon/{pokemon_number}/
+    private void getPokemon(int number) {
+        Call<Pokemon> call = pokemonAPIService.getPokemonBySpeciesNumber(""+number);
+        call.enqueue(new Callback<Pokemon>() {
+            @Override
+            public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
+                if (!response.isSuccessful()) {
+                    Log.d(TAG, "Response Code: " + response.code());
+                    return;
+                }
+
+                Pokemon pokemon = response.body();
+                apiStarterTeam.add(pokemon);
+
+                initRecyclerView();
+            }
 
         adapter.filteredList(filteredList);
     }
