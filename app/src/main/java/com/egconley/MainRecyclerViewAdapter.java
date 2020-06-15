@@ -129,4 +129,9 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         mPokemon = filteredList;
         notifyDataSetChanged();
     }
+
+    public void newList(ArrayList<Pokemon> newList) {
+        mPokemon = newList;
+        notifyDataSetChanged();
+    }
 }

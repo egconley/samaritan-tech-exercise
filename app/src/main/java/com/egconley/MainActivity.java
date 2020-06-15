@@ -1,14 +1,26 @@
 package com.egconley;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.EditText;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.egconley.pokemonAPI.PokemonAPIService;
 import com.egconley.pokemonAPI.models.Pokemon;
@@ -32,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "egc.MainActivity";
 
+    private Toolbar toolbar;
+
     // REQ 5 Connect Pokedex Client App to The open Pokemon API using Retro fit
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://pokeapi.co/api/v2/pokemon/")
@@ -39,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
             .build();
     private PokemonAPIService pokemonAPIService = retrofit.create(PokemonAPIService.class);
 
-    private List<Pokemon> apiStarterTeam = new ArrayList<>();
+    private List<Pokemon> team = new ArrayList<>();
+    private boolean newTeamRequested = false;
 
     private MainRecyclerViewAdapter adapter;
 
@@ -49,32 +64,75 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.i(TAG, "On Create started.");
 
-        getStarterTeam();
+        // Resource used: https://www.youtube.com/watch?v=e53cf9mglH8
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // Resource used: https://www.youtube.com/watch?v=OWwOSLfWboY
-        EditText searchBar = findViewById(R.id.searchBar);
-        searchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        getTeam();
+    }
 
-            }
+    // Resource used: https://www.youtube.com/watch?v=LD2zsCAAVXw
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        final MenuItem searchMenu = menu.findItem(R.id.searchBar);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+        SearchView searchBar = (SearchView) MenuItemCompat.getActionView(searchMenu);
+        searchBar.setQueryHint(getString(R.string.search_placeholder_text));
+        if (searchBar != null) {
+            // Resource used: https://www.youtube.com/watch?v=OWwOSLfWboY
+            searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-            }
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    filter(query.toString());
+                    return true;
+                }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                filter(s.toString());
-            }
-        });
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    filter(newText.toString());
+                    return true;
+                }
+            });
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // REQ 6 Bonus Feature: Implement a menu with two options.
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.new_team:
+                // generate new team
+                newTeamRequested=true;
+                getTeam();
+                LayoutInflater inflater = getLayoutInflater();
+
+                View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toast_layout));
+
+                Toast toast = new Toast(getApplicationContext());
+
+                toast.setGravity(Gravity.BOTTOM, 0, 0);
+
+                toast.setView(layout);
+
+                toast.show();
+                break;
+
+            case R.id.toggle_beacon_app:
+                // send notification
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void filter(String text) {
         ArrayList<Pokemon> filteredList = new ArrayList();
 
-        for (Pokemon p : apiStarterTeam) {
+        for (Pokemon p : team) {
             ArrayList<Type> types = p.getTypes();
             ArrayList<String> typesStringArray = getTypesStringArray(types);
             String typesString = getTypesString(typesStringArray);
@@ -92,15 +150,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        adapter = new MainRecyclerViewAdapter(this, apiStarterTeam);
+        adapter = new MainRecyclerViewAdapter(this, team);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     // REQ 5
     // REQ 5.1 Generate a list of 7 random different numbers between 1-151. These numbers corresponds to pokemon_numbers
-    private void getStarterTeam() {
+    private void getTeam() {
         Set<Integer> set = getRandomNumberSet();
+        // clean new team list each time to allow for serial clicks on "Generate New Random Team"
+        team.clear();
         for (Integer i : set) {
             getPokemon(i);
         }
@@ -118,9 +178,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Pokemon pokemon = response.body();
-                apiStarterTeam.add(pokemon);
+                team.add(pokemon);
+                if (newTeamRequested==false) {
+                    initRecyclerView();
+                } else {
+                    adapter.newList((ArrayList<Pokemon>) team);
+                }
 
-                initRecyclerView();
             }
 
             @Override
