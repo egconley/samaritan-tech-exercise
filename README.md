@@ -16,6 +16,6 @@ Create an app that simulates a mini pokedex using [The open Pokemon API](https:/
    * Generate a list of 7 random different numbers between 1-151. These numbers corresponds to `pokemon_numbers`
    * Fetch the pokemon using those `pokemon_numbers` to call the endpoint `https://pokeapi.co/api/v2/pokemon/{pokemon_number}/`
 
-- [ ] 6. **Bonus Feature:** Implement a menu with two options.
+- [X] 6. **Bonus Feature:** Implement a menu with two options.
    * Generate new Random Team: Generate a new Team of 7 different pokemons, fetch their data and render them in the list replacing the old team of pokemon
    * Show Notification:  When this option is selected it should show a notifcation with an image and a `Hello Pokemon` message

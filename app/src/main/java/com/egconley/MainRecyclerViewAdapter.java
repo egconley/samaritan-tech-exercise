@@ -23,6 +23,8 @@ import com.egconley.pokemonAPI.models.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.egconley.util.FirstLetterCapitalizer.capitalizeFirstLetter;
+import static com.egconley.util.FirstLetterCapitalizer.capitalizeStringsInArray;
 import static com.egconley.util.StringArrayGenerator.getAbilitiesStringArray;
 import static com.egconley.util.StringArrayGenerator.getMovesStringArray;
 import static com.egconley.util.StringArrayGenerator.getTypesString;
@@ -55,15 +57,15 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder called.");
 
-        // get data in String/ArrayList<String> form
+        // get data in String/ArrayList<String> form, formatted with first letter capitalized
         ArrayList<Ability> abilities = mPokemon.get(position).getAbilities();
-        final ArrayList<String> abilitiesStringArray = getAbilitiesStringArray(abilities);
+        final ArrayList<String> abilitiesStringArray = capitalizeStringsInArray(getAbilitiesStringArray(abilities));
 
         ArrayList<Move> moves = mPokemon.get(position).getMoves();
-        final ArrayList<String> movesStringArray = getMovesStringArray(moves);
+        final ArrayList<String> movesStringArray = capitalizeStringsInArray(getMovesStringArray(moves));
 
         ArrayList<Type> types = mPokemon.get(position).getTypes();
-        ArrayList<String> typesStringArray = getTypesStringArray(types);
+        ArrayList<String> typesStringArray = capitalizeStringsInArray(getTypesStringArray(types));
         final String typesString = getTypesString(typesStringArray);
 
         Sprites sprites = mPokemon.get(position).getSprites();
@@ -76,7 +78,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(holder.pokemonPic);
-        holder.pokemonName.setText("Name: " + mPokemon.get(position).getName());
+        holder.pokemonName.setText("Name: " + capitalizeFirstLetter(mPokemon.get(position).getName()));
         holder.level.setText("Level: 34");
         holder.pokemonTypes.setText("Types: " + typesString);
 
@@ -87,7 +89,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
                 Log.d(TAG, "Clicked on: " + mPokemon.get(position).getName());
                 Intent goToDetailView = new Intent(mContext, DetailViewActivity.class);
 
-                goToDetailView.putExtra("kName", mPokemon.get(position).getName());
+                goToDetailView.putExtra("kName", capitalizeFirstLetter(mPokemon.get(position).getName()));
                 goToDetailView.putExtra("kFrontPic", frontPic);
                 goToDetailView.putExtra("kBackPic", backPic);
                 goToDetailView.putExtra("kWeight", ""+mPokemon.get(position).getWeight());
@@ -127,6 +129,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     public void filteredList(ArrayList<Pokemon> filteredList) {
         mPokemon = filteredList;
+        notifyDataSetChanged();
+    }
+
+    public void newList(ArrayList<Pokemon> newList) {
+        mPokemon = newList;
         notifyDataSetChanged();
     }
 }
